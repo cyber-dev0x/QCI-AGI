@@ -10,7 +10,7 @@ type ChatMessage = {
 const starterMessage: ChatMessage = {
   role: "assistant",
   content:
-    "Привет! Я QCI AGI на базе Claude. Напиши задачу — помогу с кодом, идеями, анализом и планом действий.",
+    "Hi! I’m QCI AGI powered by Claude. Share your task — I can help with code, ideas, analysis, and action plans.",
 };
 
 export default function Home() {
@@ -53,10 +53,11 @@ export default function Home() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data?.error || "Ошибка сервера.");
+        throw new Error(data?.error || "Server error.");
       }
 
-      const reply = typeof data?.reply === "string" ? data.reply : "Пустой ответ от Claude.";
+      const reply =
+        typeof data?.reply === "string" ? data.reply : "Empty response from Claude.";
 
       setMessages((prev) => [
         ...prev,
@@ -67,7 +68,7 @@ export default function Home() {
       ]);
     } catch (requestError) {
       const message =
-        requestError instanceof Error ? requestError.message : "Не удалось получить ответ.";
+        requestError instanceof Error ? requestError.message : "Failed to get a response.";
       setError(message);
     } finally {
       setIsLoading(false);
@@ -79,7 +80,7 @@ export default function Home() {
       <header className="mb-6">
         <h1 className="text-2xl font-semibold">QCI AGI · Claude Agent</h1>
         <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-          Веб-интерфейс к Claude через Anthropic API.
+          Web interface for Claude via the Anthropic API.
         </p>
       </header>
 
@@ -100,7 +101,7 @@ export default function Home() {
 
           {isLoading && (
             <div className="max-w-[80%] rounded-2xl bg-zinc-100 px-4 py-3 text-sm text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
-              Claude думает...
+              Claude is thinking...
             </div>
           )}
         </div>
@@ -116,7 +117,7 @@ export default function Home() {
             type="text"
             value={input}
             onChange={(event) => setInput(event.target.value)}
-            placeholder="Напиши запрос для QCI AGI..."
+            placeholder="Type your request for QCI AGI..."
             className="flex-1 rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm outline-none ring-0 placeholder:text-zinc-500 focus:border-zinc-500 dark:border-zinc-700 dark:bg-zinc-900"
           />
           <button
@@ -124,7 +125,7 @@ export default function Home() {
             disabled={!canSend}
             className="rounded-xl bg-black px-4 py-3 text-sm font-medium text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-black"
           >
-            {isLoading ? "..." : "Отправить"}
+            {isLoading ? "..." : "Send"}
           </button>
         </form>
       </main>
