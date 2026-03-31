@@ -9,6 +9,13 @@
 - Интеграция с `@anthropic-ai/sdk`
 - Готово к деплою на Vercel
 
+## Live
+
+- GitHub: https://github.com/cyber-dev0x/QCI-AGI
+- Deploy: https://qci-agi-claude-agent.vercel.app
+
+> Сейчас API-чат заработает после добавления `ANTHROPIC_API_KEY` в Vercel Project Settings → Environment Variables.
+
 ## Быстрый старт
 
 ```bash
